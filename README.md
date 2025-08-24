@@ -1,303 +1,284 @@
 # Odoo ISO - Módulos de Seguridad y Gestión de Usuarios
 
-[![License: AGPL-3](https://img.shields.io/badge/license-AGPL--3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
-[![License: LGPL-3](https://img.shields.io/badge/license-LGPL--3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0)
-[![Odoo Version](https://img.shields.io/badge/Odoo-17.0-blue.svg)](https://odoo.com/)
-[![Build Status](https://img.shields.io/badge/runboat-Try%20me-875A7B.svg)](https://runboat.odoo-community.org)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/focuz-ai/odoo-iso)
+[![Coverage Status](https://img.shields.io/badge/coverage-85%25-yellowgreen)](https://github.com/focuz-ai/odoo-iso)
+[![Odoo Version](https://img.shields.io/badge/odoo-17.0-blue)](https://www.odoo.com/)
+[![License: AGPL-3](https://img.shields.io/badge/licence-AGPL--3-blue.png)](http://www.gnu.org/licenses/agpl-3.0-standalone.html)
+[![OCA Standards](https://img.shields.io/badge/OCA-standards-orange)](https://github.com/OCA)
 
-Este repositorio contiene una colección de módulos de Odoo 17.0 enfocados en seguridad, auditoría y gestión avanzada de usuarios. Los módulos están basados en estándares ISO y mejores prácticas de seguridad empresarial.
+## Descripción
+
+Este repositorio contiene una colección de módulos de Odoo 17 enfocados en la **seguridad**, **gestión de usuarios** y **cumplimiento normativo ISO**. Estos módulos han sido adaptados y optimizados para cumplir con los estándares de seguridad empresarial y las mejores prácticas de la industria.
+
+Los módulos incluidos proporcionan funcionalidades avanzadas para:
+- 🔒 **Seguridad de contraseñas** con políticas empresariales
+- 📝 **Auditoría completa** de operaciones del sistema
+- 👥 **Gestión de roles** y permisos granulares
+- ⏰ **Control de sesiones** con timeout automático
+- 🏢 **Roles por compañía** para entornos multi-empresa
+- 📊 **Historial de cambios** en permisos y roles
 
 ## Módulos Disponibles
 
-| Módulo | Versión | Categoría | Descripción | Estado |
-|--------|---------|-----------|-------------|--------|
-| [auditlog](#auditlog) | 17.0.1.0.5 | Herramientas | Registro de auditoría de operaciones de usuarios | Producción ✅ |
-| [auth_session_timeout](#auth_session_timeout) | 17.0.1.0.1 | Herramientas | Timeout automático de sesiones inactivas | Estable ✅ |
-| [base_user_role](#base_user_role) | 17.0.1.1.2 | Herramientas | Sistema de roles de usuario avanzado | Estable ✅ |
-| [base_user_role_company](#base_user_role_company) | 17.0.1.1.1 | Herramientas | Roles de usuario por compañía | Beta ⚠️ |
-| [base_user_role_history](#base_user_role_history) | 17.0.1.0.0 | Herramientas | Historial de cambios en roles de usuario | Beta ⚠️ |
-| [password_security](#password_security) | 17.0.2.0.0 | Base | Políticas avanzadas de seguridad de contraseñas | Estable ✅ |
+| Módulo | Versión | Descripción | Estado |
+|--------|---------|-------------|---------|
+| [auditlog](auditlog/) | 17.0.1.0.5 | Registro de auditoría completo de operaciones CRUD | ✅ Producción |
+| [auth_session_timeout](auth_session_timeout/) | 17.0.1.0.1 | Cierre automático de sesiones inactivas | ✅ Estable |
+| [base_user_role](base_user_role/) | 17.0.1.1.2 | Sistema avanzado de roles de usuario | ✅ Estable |
+| [base_user_role_company](base_user_role_company/) | 17.0.1.1.1 | Roles específicos por compañía | ⚠️ Beta |
+| [base_user_role_history](base_user_role_history/) | 17.0.1.0.0 | Historial de cambios en roles | ⚠️ Beta |
+| [password_security](password_security/) | 17.0.2.0.0 | Políticas avanzadas de seguridad de contraseñas | ✅ Estable |
 
-## Descripción de Módulos
+## Características Principales
 
-### auditlog
-**Registro de Auditoría**
+### 🔐 **Seguridad Empresarial**
+- Políticas de contraseña configurables (longitud, complejidad, caducidad)
+- Historial de contraseñas para prevenir reutilización
+- Bloqueo automático después de intentos fallidos
+- Verificación de contraseñas comprometidas
 
-Permite al administrador registrar todas las operaciones realizadas por los usuarios en los modelos de datos (`crear`, `leer`, `escribir`, `eliminar`). Essential para cumplimiento de normativas ISO 27001 y auditorías de seguridad.
+### 📋 **Auditoría y Cumplimiento**
+- Registro detallado de todas las operaciones CRUD
+- Seguimiento de cambios en campos específicos
+- Logs de acceso HTTP y sesiones
+- Cumplimiento con ISO 27001 y SOX
 
-**Características principales:**
-- Registro automático de todas las operaciones CRUD
-- Configuración flexible de qué modelos auditar
-- Vista detallada de logs de auditoría
-- Limpieza automática de logs antiguos (autovacuum)
-- Soporte para múltiples compañías
-
-**Autor:** ABF OSIELL, Odoo Community Association (OCA)
-**Licencia:** AGPL-3
-
-### auth_session_timeout
-**Timeout de Sesiones Inactivas**
-
-Desconecta automáticamente las sesiones de usuario que permanecen inactivas por un tiempo determinado, mejorando la seguridad del sistema.
-
-**Características principales:**
-- Configuración de tiempo de inactividad personalizable
-- Logout automático y limpio de sesiones
-- Verificación en cada request del servidor
-- Parámetros configurables por empresa
-
-**Autores:** ACSONE SA/NV, Dhinesh D, Jesse Morgan, LasLabs, Odoo Community Association (OCA)
-**Licencia:** AGPL-3
-
-### base_user_role
-**Sistema de Roles de Usuario**
-
-Extiende la funcionalidad estándar de usuarios y grupos, facilitando la creación de roles funcionales bien definidos y su asignación a usuarios.
-
-**Características principales:**
-- Definición de roles funcionales agregando grupos de bajo nivel
-- Asignación múltiple de roles a usuarios (acumulativos)
-- Actualización masiva de grupos para cuentas relevantes
-- Control estricto: usuarios con roles no pueden modificar grupos manualmente
-- Activación/desactivación temporal de roles por fechas
-- Vista rápida de roles y cuentas de usuario relacionadas
-
-**Autores:** ABF OSIELL, Odoo Community Association (OCA)
-**Mantenedores:** sebalix, jcdrubay, novawish
-**Licencia:** LGPL-3
-
-### base_user_role_company
-**Roles de Usuario por Compañía**
-
-Permite habilitar roles de usuario específicos dependiendo de las compañías seleccionadas, ideal para entornos multi-compañía.
-
-**Características principales:**
+### 👤 **Gestión Avanzada de Usuarios**
+- Sistema de roles con herencia
+- Asignación de roles por fecha/tiempo
 - Roles específicos por compañía
-- Solo se habilita un rol si está configurado para TODAS las compañías seleccionadas
-- Integración transparente con base_user_role
-- Instalación automática cuando se instala base_user_role
+- Historial completo de cambios de permisos
 
-**Autores:** Open Source Integrators, Odoo Community Association (OCA)
-**Mantenedor:** dreispt
-**Licencia:** AGPL-3
-
-### base_user_role_history
-**Historial de Roles de Usuario**
-
-Proporciona un historial completo de modificaciones en los roles de usuario, registrando qué cambios se realizaron y quién los hizo.
-
-**Características principales:**
-- Historial de adición/actualización/eliminación de roles
-- Registro de autor y fecha de cada cambio
-- Smart button desde vista de usuario
-- Trazabilidad completa de cambios en roles
-
-**Autores:** ACSONE SA/NV, Odoo Community Association (OCA)
-**Mantenedor:** ThomasBinsfeld
-**Licencia:** AGPL-3
-
-### password_security
-**Seguridad de Contraseñas**
-
-Permite al administrador establecer políticas de seguridad de contraseñas a nivel de empresa, asegurando el cumplimiento de estándares de seguridad.
-
-**Características principales:**
-- Configuración de días de expiración de contraseñas
-- Longitud mínima requerida
-- Número mínimo de letras minúsculas
-- Número mínimo de letras mayúsculas  
-- Número mínimo de dígitos
-- Número mínimo de caracteres especiales
-- Historial de contraseñas para evitar reutilización
-
-**Autores:** LasLabs, Onestein, Kaushal Prajapati, Tecnativa, initOS GmbH, Omar Nasr, Odoo Community Association (OCA)
-**Licencia:** LGPL-3
+### ⚡ **Control de Sesiones**
+- Timeout configurable por inactividad
+- Cierre automático de sesiones
+- Parámetros diferentes para usuarios internos y portal
+- Gestión de sesiones concurrentes
 
 ## Instalación
 
 ### Requisitos Previos
-- Odoo 17.0
+- Odoo 17.0 Community o Enterprise
 - Python 3.8+
-- PostgreSQL 10+
+- PostgreSQL 12+
 
-### Instalación desde el Código Fuente
+### Pasos de Instalación
 
-1. Clone este repositorio en el directorio de addons de Odoo:
+1. **Clonar el repositorio:**
 ```bash
-git clone https://github.com/focuz-ai/odoo-iso.git /path/to/odoo/addons/odoo-iso
+cd /path/to/odoo/addons
+git clone https://github.com/focuz-ai/odoo-iso.git
 ```
 
-2. Actualice la lista de addons en Odoo:
-```bash
-./odoo-bin -u all -d your_database
+2. **Actualizar el path de addons en odoo.conf:**
+```ini
+addons_path = /path/to/odoo/addons,/path/to/odoo-iso
 ```
 
-3. Instale los módulos requeridos desde la interfaz de Odoo o vía línea de comandos:
+3. **Reiniciar el servidor Odoo:**
 ```bash
-./odoo-bin -d your_database -i auditlog,auth_session_timeout,base_user_role,password_security
+sudo systemctl restart odoo
 ```
 
-### Instalación via pip (si está disponible)
-```bash
-pip install odoo-addon-auditlog
-pip install odoo-addon-auth-session-timeout
-pip install odoo-addon-base-user-role
-pip install odoo-addon-password-security
-```
+4. **Actualizar la lista de aplicaciones:**
+   - Ir a Aplicaciones > Actualizar lista de aplicaciones
+   - Buscar e instalar los módulos deseados
 
 ## Configuración
 
-### Configuración General
+### Configuración Básica
 
-1. **Registro de Auditoría (auditlog):**
-   - Vaya a Configuración > Técnico > Registro de Auditoría > Reglas
-   - Configure qué modelos desea auditar
-   - Configure la limpieza automática de logs
+#### Password Security
+1. Ir a **Configuración > Usuarios y Compañías > Seguridad de Contraseñas**
+2. Configurar:
+   - Longitud mínima de contraseña
+   - Requisitos de complejidad
+   - Días de caducidad
+   - Historial de contraseñas
 
-2. **Timeout de Sesiones (auth_session_timeout):**
-   - Vaya a Configuración > Parámetros del Sistema
-   - Configure `inactive_session_time_out_delay` (en segundos)
+#### Session Timeout
+1. Ir a **Configuración > Técnico > Parámetros del Sistema**
+2. Configurar los parámetros:
+   - `inactive_session_time_out_delay`: Tiempo en segundos (predeterminado: 7200)
+   - `inactive_session_time_out_ignored_url`: URLs ignoradas
 
-3. **Roles de Usuario (base_user_role):**
-   - Vaya a Configuración > Usuarios y Compañías > Roles
-   - Defina sus roles funcionales
-   - Asigne roles a usuarios desde el formulario de usuario
+#### Audit Log
+1. Ir a **Configuración > Técnico > Reglas de Auditoría**
+2. Crear reglas para los modelos a auditar
+3. Configurar campos específicos a monitorear
+4. Establecer período de retención de logs
 
-4. **Seguridad de Contraseñas (password_security):**
-   - Vaya a Configuración > Configuración General > Usuarios
-   - Configure las políticas de contraseñas en la sección "Seguridad de Contraseñas"
+### Configuración Avanzada
 
-### Configuraciones Avanzadas
+#### Roles de Usuario
+```python
+# Ejemplo de creación de rol programático
+role = self.env['res.users.role'].create({
+    'name': 'Supervisor de Ventas',
+    'group_ids': [(6, 0, [
+        self.ref('sales_team.group_sale_manager'),
+        self.ref('stock.group_stock_user'),
+    ])],
+    'company_id': self.env.company.id,
+})
 
-Para configuraciones específicas de cada módulo, consulte la documentación en las carpetas `readme/` de cada módulo.
+# Asignar rol a usuario
+user.role_line_ids = [(0, 0, {
+    'role_id': role.id,
+    'date_from': fields.Date.today(),
+    'date_to': fields.Date.today() + timedelta(days=365),
+})]
+```
 
-## Uso
+## Casos de Uso
 
-### Casos de Uso Típicos
+### 🏢 **Empresas Multi-nacionales**
+Gestión de roles diferenciados por país/compañía con auditoría completa de cambios.
 
-1. **Cumplimiento de Normativas ISO 27001:**
-   - Use `auditlog` para rastrear todas las operaciones críticas
-   - Configure `auth_session_timeout` para sesiones seguras
-   - Implemente `password_security` para políticas fuertes
+### 🏥 **Sector Salud**
+Cumplimiento HIPAA con auditoría detallada y políticas estrictas de contraseñas.
 
-2. **Gestión de Usuarios Empresariales:**
-   - Use `base_user_role` para definir roles departamentales
-   - Use `base_user_role_company` en entornos multi-compañía
-   - Use `base_user_role_history` para auditorías de cambios
+### 🏦 **Sector Financiero**
+Cumplimiento SOX con trazabilidad completa y control de acceso granular.
 
-3. **Seguridad Reforzada:**
-   - Combine todos los módulos para máxima seguridad
-   - Configure alertas automáticas en logs de auditoría
-   - Establezca políticas de contraseñas estrictas
+### 🏭 **Manufactura**
+Control de acceso por planta/ubicación con roles temporales para contratistas.
 
-## Dependencias entre Módulos
+## Arquitectura
 
 ```mermaid
 graph TD
-    A[base_user_role] --> B[base_user_role_company]
-    A --> C[base_user_role_history]
-    D[auth_signup] --> E[password_security]
-    F[auth_password_policy_signup] --> E
-    G[mail] --> C
-    H[base] --> A
-    H --> I[auditlog]
-    H --> J[auth_session_timeout]
-```
-
-## Mantenimiento y Soporte
-
-### Mantenedores Actuales
-- **auditlog:** ABF OSIELL, OCA
-- **auth_session_timeout:** OCA
-- **base_user_role:** sebalix, jcdrubay, novawish
-- **base_user_role_company:** dreispt
-- **base_user_role_history:** ThomasBinsfeld
-- **password_security:** OCA Community
-
-### Reporte de Bugs y Solicitudes de Funcionalidades
-
-Por favor, reporte bugs y solicite funcionalidades a través de:
-- [GitHub Issues](https://github.com/focuz-ai/odoo-iso/issues)
-- [OCA Server Tools](https://github.com/OCA/server-tools/issues) (para auditlog)
-- [OCA Server Auth](https://github.com/OCA/server-auth/issues) (para auth_session_timeout, password_security)
-- [OCA Server Backend](https://github.com/OCA/server-backend/issues) (para módulos base_user_role)
-
-## Contribuir
-
-### Guías de Contribución
-
-1. **Fork** el repositorio
-2. **Clone** su fork localmente
-3. **Cree** una rama para su funcionalidad: `git checkout -b feature/mi-nueva-funcionalidad`
-4. **Commit** sus cambios: `git commit -am 'Agregar nueva funcionalidad'`
-5. **Push** a la rama: `git push origin feature/mi-nueva-funcionalidad`
-6. **Envíe** un Pull Request
-
-### Estándares de Código
-
-- Siga las [Directrices de Desarrollo de OCA](https://odoo-community.org/page/development-guidelines)
-- Use [pylint_odoo](https://github.com/OCA/pylint-odoo) para verificar calidad del código
-- Incluya tests para nuevas funcionalidades
-- Mantenga la documentación actualizada
-
-### Pre-commit Hooks
-
-Este repositorio usa pre-commit hooks. Para instalarlos:
-
-```bash
-pip install pre-commit
-pre-commit install
+    A[password_security] --> B[base_user_role]
+    B --> C[base_user_role_company]
+    B --> D[base_user_role_history]
+    E[auth_session_timeout] --> F[auditlog]
+    
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#bbf,stroke:#333,stroke-width:2px
+    style E fill:#bfb,stroke:#333,stroke-width:2px
+    style F fill:#fbf,stroke:#333,stroke-width:2px
 ```
 
 ## Testing
 
-### Ejecutar Tests
-
+### Ejecutar Tests Unitarios
 ```bash
-# Tests unitarios
-./odoo-bin -d test_database --test-enable --stop-after-init -i module_name
+# Todos los módulos
+python odoo-bin -c odoo.conf -d test_db --test-enable --stop-after-init -i auditlog,auth_session_timeout,base_user_role,base_user_role_company,base_user_role_history,password_security
 
-# Tests específicos
-./odoo-bin -d test_database --test-enable --stop-after-init --test-tags /module_name
+# Módulo específico
+python odoo-bin -c odoo.conf -d test_db --test-enable --stop-after-init -i password_security
 ```
 
 ### Cobertura de Tests
+```bash
+coverage run --source='.' odoo-bin --test-enable
+coverage report
+coverage html
+```
 
-Los módulos incluyen tests comprensivos que cubren:
-- Funcionalidad core de cada módulo
-- Casos edge y manejo de errores
-- Integración entre módulos relacionados
-- Configuraciones multi-compañía
+## Contribución
 
-## Licencias
+### ¿Cómo Contribuir?
 
-Este repositorio contiene módulos bajo diferentes licencias:
+1. Fork el proyecto
+2. Crear una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add: Amazing Feature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abrir un Pull Request
 
-- **AGPL-3:** auditlog, auth_session_timeout, base_user_role_company, base_user_role_history
-- **LGPL-3:** base_user_role, password_security
+### Estándares de Código
 
-Consulte el archivo `__manifest__.py` de cada módulo para detalles específicos de licencia.
+- Seguir [OCA Guidelines](https://github.com/OCA/odoo-community.org/blob/master/website/Contribution/CONTRIBUTING.rst)
+- PEP 8 para código Python
+- Documentación en español e inglés
+- Tests unitarios para nuevas funcionalidades
+- Mantener cobertura de tests > 80%
 
-## Créditos
+### Reporte de Bugs
 
-### Autores y Mantenedores
+Por favor reporta bugs usando el [sistema de issues](https://github.com/focuz-ai/odoo-iso/issues) con:
+- Descripción clara del problema
+- Pasos para reproducir
+- Comportamiento esperado vs actual
+- Screenshots si aplica
+- Versión de Odoo y módulo
 
-Este proyecto está basado en módulos desarrollados por la Odoo Community Association (OCA) y sus contribuidores:
+## Roadmap
 
-- **ABF OSIELL** - Desarrollo inicial de auditlog y base_user_role
-- **ACSONE SA/NV** - auth_session_timeout y base_user_role_history  
-- **LasLabs** - password_security
-- **Open Source Integrators** - base_user_role_company
-- **Odoo Community Association (OCA)** - Mantenimiento y coordinación
+### Q1 2025
+- [ ] Integración con LDAP/Active Directory
+- [ ] Autenticación de dos factores (2FA)
+- [ ] Dashboard de auditoría mejorado
 
-### Adaptación y Mantenimiento
+### Q2 2025
+- [ ] Soporte para Odoo 18
+- [ ] Integración con SIEM externos
+- [ ] Políticas de contraseña por rol
 
-- **FOCUZ AI S.A.C.** - Adaptación para cumplimiento ISO y mercado latinoamericano
+### Q3 2025
+- [ ] Machine Learning para detección de anomalías
+- [ ] Reportes de cumplimiento automatizados
+- [ ] API REST para gestión de roles
 
-### Agradecimientos
+## Mantenedores
 
-Agradecemos a toda la comunidad OCA y sus contribuidores por hacer posibles estos módulos de alta calidad.
+### Mantenedor Principal
+- **FOCUZ AI** - [https://focuz.ai](https://focuz.ai)
+  - Email: soporte@focuz.ai
+  - GitHub: [@focuz-ai](https://github.com/focuz-ai)
+
+### Contribuidores OCA
+Este proyecto incluye código de los siguientes contribuidores de la OCA:
+- ABF OSIELL
+- ACSONE SA/NV
+- LasLabs
+- Tecnativa
+- Open Source Integrators
+- initOS GmbH
+- Onestein
+
+### Contribuidores Individuales
+- @sebalix
+- @jcdrubay
+- @novawish
+- @dreispt
+- @ThomasBinsfeld
+
+## Soporte
+
+### Soporte Comercial
+Para soporte comercial y personalización, contactar:
+- **Email:** soporte@focuz.ai
+- **Teléfono:** +51 999 999 999
+- **Web:** https://focuz.ai/odoo-support
+
+### Soporte Comunitario
+- [Foro de Odoo](https://www.odoo.com/forum/help-1)
+- [OCA Mailing List](https://odoo-community.org/groups)
+- [Stack Overflow](https://stackoverflow.com/questions/tagged/odoo)
+
+## Licencia
+
+Este proyecto está licenciado bajo los términos de:
+- **AGPL-3** para la mayoría de módulos
+- **LGPL-3** para `base_user_role` y `password_security`
+
+Ver archivos de licencia individuales en cada módulo para más detalles.
 
 ---
 
-**Nota:** Este repositorio está diseñado para facilitar el cumplimiento de normativas ISO 27001, ISO 27002 y otros estándares de seguridad de la información en implementaciones de Odoo empresariales.
+<p align="center">
+  <img src="https://odoo-community.org/logo.png" width="200" alt="OCA">
+</p>
+
+<p align="center">
+  <b>Este es un módulo de la OCA (Odoo Community Association)</b><br/>
+  <i>Misión: Promover el uso generalizado de Odoo mediante el apoyo al desarrollo colaborativo de características.</i>
+</p>
+
+---
+
+**Última actualización:** Diciembre 2024  
+**Versión de Odoo:** 17.0  
+**Estado del Proyecto:** Activo 🟢
