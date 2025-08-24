@@ -249,9 +249,9 @@ Este proyecto incluye código de los siguientes contribuidores de la OCA:
 
 ### Soporte Comercial
 Para soporte comercial y personalización, contactar:
-- **Email:** soporte@focuz.ai
-- **Teléfono:** +51 999 999 999
-- **Web:** https://focuz.ai/odoo-support
+- **Email:** odoo@focuz.io
+- **Teléfono:** +51 948 609 939
+- **Web:** https://www.focuz.io/odoo-support
 
 ### Soporte Comunitario
 - [Foro de Odoo](https://www.odoo.com/forum/help-1)
