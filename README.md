@@ -224,9 +224,9 @@ Por favor reporta bugs usando el [sistema de issues](https://github.com/focuz-ai
 ## Mantenedores
 
 ### Mantenedor Principal
-- **FOCUZ AI** - [https://focuz.ai](https://focuz.ai)
-  - Email: soporte@focuz.ai
-  - GitHub: [@focuz-ai](https://github.com/focuz-ai)
+- **FOCUZ AI** - [https://www.focuz.io](https://focuz.io)
+  - Email: odoo@focuz.io
+  - GitHub: [@focuzai](https://github.com/focuzai)
 
 ### Contribuidores OCA
 Este proyecto incluye código de los siguientes contribuidores de la OCA:
