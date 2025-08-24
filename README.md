@@ -1,7 +1,7 @@
 # Odoo ISO - Módulos de Seguridad y Gestión de Usuarios
 
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/focuz-ai/odoo-iso)
-[![Coverage Status](https://img.shields.io/badge/coverage-85%25-yellowgreen)](https://github.com/focuz-ai/odoo-iso)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/focuzai/odoo-iso)
+[![Coverage Status](https://img.shields.io/badge/coverage-85%25-yellowgreen)](https://github.com/focuzai/odoo-iso)
 [![Odoo Version](https://img.shields.io/badge/odoo-17.0-blue)](https://www.odoo.com/)
 [![License: AGPL-3](https://img.shields.io/badge/licence-AGPL--3-blue.png)](http://www.gnu.org/licenses/agpl-3.0-standalone.html)
 [![OCA Standards](https://img.shields.io/badge/OCA-standards-orange)](https://github.com/OCA)
@@ -67,7 +67,7 @@ Los módulos incluidos proporcionan funcionalidades avanzadas para:
 1. **Clonar el repositorio:**
 ```bash
 cd /path/to/odoo/addons
-git clone https://github.com/focuz-ai/odoo-iso.git
+git clone https://github.com/focuzai/odoo-iso.git
 ```
 
 2. **Actualizar el path de addons en odoo.conf:**
@@ -197,7 +197,7 @@ coverage html
 
 ### Reporte de Bugs
 
-Por favor reporta bugs usando el [sistema de issues](https://github.com/focuz-ai/odoo-iso/issues) con:
+Por favor reporta bugs usando el [sistema de issues](https://github.com/focuzai/odoo-iso/issues) con:
 - Descripción clara del problema
 - Pasos para reproducir
 - Comportamiento esperado vs actual
